@@ -1,7 +1,6 @@
 import axios from "axios";
-import InfiniteScroll from "react-infinite-scroll-component";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 interface UniversityData {
   alpha_two_code: string;
   country: string;
@@ -15,7 +14,6 @@ const Services = () => {
   const [universitData, setUniversityData] = useState<UniversityData[] | null>(
     []
   );
-  const loadingRef = useRef(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -43,7 +41,6 @@ const Services = () => {
     e.preventDefault();
     fetchData();
   };
-  const refresh = () => {};
   return (
     <div className="py-24 min-h-screen px-2 sm:px-8 lg:px-20">
       <form onSubmit={handleSearch} className="relative pb-10">
