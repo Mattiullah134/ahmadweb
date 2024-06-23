@@ -1,4 +1,3 @@
-import React from "react";
 import ClientDetails from "../components/ClientDetails";
 
 const About = () => {

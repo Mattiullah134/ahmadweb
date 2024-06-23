@@ -1,6 +1,5 @@
 import axios from "axios";
-import { Search } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 interface UniversityData {
   alpha_two_code: string;
   country: string;
@@ -37,7 +36,7 @@ const Services = () => {
   const handleInputChange = (country: string) => {
     setCountryName(country);
   };
-  const handleSearch = (e) => {
+  const handleSearch = (e: any) => {
     e.preventDefault();
     fetchData(countryName);
   };
