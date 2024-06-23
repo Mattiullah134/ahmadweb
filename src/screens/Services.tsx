@@ -1,5 +1,7 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
+
+import { useEffect, useRef, useState } from "react";
 interface UniversityData {
   alpha_two_code: string;
   country: string;
@@ -13,16 +15,17 @@ const Services = () => {
   const [universitData, setUniversityData] = useState<UniversityData[] | null>(
     []
   );
+  const loadingRef = useRef(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetchData(countryName);
+    fetchData();
   }, []);
-  const fetchData = async (country: string) => {
+  const fetchData = async () => {
     try {
       setLoading(true);
       let { data } = await axios.get(
-        `http://universities.hipolabs.com/search?country=${country}`
+        `http://universities.hipolabs.com/search?country=${countryName}`
       );
       setLoading(false);
       console.log("type", typeof data[0]);
@@ -38,10 +41,11 @@ const Services = () => {
   };
   const handleSearch = (e: any) => {
     e.preventDefault();
-    fetchData(countryName);
+    fetchData();
   };
+  const refresh = () => {};
   return (
-    <div className="py-24 px-2 sm:px-8 lg:px-20">
+    <div className="py-24 min-h-screen px-2 sm:px-8 lg:px-20">
       <form onSubmit={handleSearch} className="relative pb-10">
         <div className="flex">
           <label
@@ -86,9 +90,9 @@ const Services = () => {
 
       <section className="text-gray-600 body-font">
         <div className="container px-5 pb-10 mx-auto">
-          <div className="flex flex-wrap -m-4">
+          <div className="flex flex-wrap justify-between md:justify-center -m-4 w-full">
             {loading
-              ? "loading....."
+              ? "loading..."
               : universitData && universitData?.length > 0
               ? universitData?.map((ser) => {
                   return (
