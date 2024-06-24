@@ -1,65 +1,92 @@
-import axios from "axios";
+import { useState } from "react";
+import data from "../utils/data";
 
-import { useEffect, useState } from "react";
-interface UniversityData {
-  alpha_two_code: string;
-  country: string;
-  domains: string[];
-  name: string;
-  web_pages: string[];
-  state_province: string;
-}
+let countryData = [
+  { id: "countrydata-1", name: "Pakistan", value: "pakistan" },
+  { id: "countrydata-2", name: "France", value: "france" },
+  { id: "countrydata-3", name: "Italy", value: "italy" },
+  { id: "countrydata-4", name: "UnitedKindom", value: "uk" },
+  { id: "countrydata-5", name: "Germany", value: "germany" },
+];
 const Services = () => {
   const [countryName, setCountryName] = useState("pakistan");
-  const [universitData, setUniversityData] = useState<UniversityData[] | null>(
-    []
-  );
+  // const [_, setUniversityData] = useState<UniversityData[] | null>([]);
+
+  const [dropdown, setDropDown] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-  const fetchData = async () => {
-    try {
-      setLoading(true);
-      let { data } = await axios.get(
-        `http://universities.hipolabs.com/search?country=${countryName}`
-      );
-      setLoading(false);
-      console.log("type", typeof data[0]);
-
-      setUniversityData(data);
-      console.log("data", data);
-    } catch (error) {
-      setLoading(false);
-    }
+  const toggleDropDown = () => {
+    setDropDown(!dropdown);
   };
-  const handleInputChange = (country: string) => {
-    setCountryName(country);
-  };
-  const handleSearch = (e: any) => {
-    e.preventDefault();
-    fetchData();
+
+  const handleSearch = (value: string) => {
+    setLoading(true);
+    toggleDropDown();
+    setCountryName(value);
+    setTimeout(() => {
+      setLoading(false);
+    }, 200);
   };
   return (
     <div className="py-24 min-h-screen px-2 sm:px-8 lg:px-20">
-      <form onSubmit={handleSearch} className="relative pb-10">
+      <form className="pb-10 relative">
         <div className="flex">
-          <label
-            htmlFor="search-dropdown"
-            className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+          <button
+            id="dropdown-button"
+            data-dropdown-toggle="dropdown"
+            className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-2 sm:px-4  text-sm font-medium text-center text-gray-900 bg-gray-100 border border-e-0 border-gray-300 dark:border-gray-700 dark:text-white rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+            type="button"
+            onClick={toggleDropDown}
           >
-            Your Email
-          </label>
-
-          <div className="relative w-full">
+            All categories{" "}
+            <svg
+              className="w-2.5 h-2.5 ms-2.5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 10 6"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m1 1 4 4 4-4"
+              />
+            </svg>
+          </button>
+          {dropdown && (
+            <div
+              id="dropdown"
+              className="z-10 absolute top-14 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+            >
+              <ul
+                className="py-2 text-sm text-gray-700 dark:text-gray-200"
+                aria-labelledby="dropdown-button"
+              >
+                {countryData.map((data) => {
+                  return (
+                    <li key={data.id} className="cursor-pointer">
+                      <p
+                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        onClick={() => handleSearch(data.value)}
+                      >
+                        {data.name}
+                      </p>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
+          <div className="relative  w-full ">
             <input
               type="search"
               id="search-dropdown"
+              value={countryName}
               className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg rounded-s-gray-100 rounded-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
               placeholder="Search"
               required
-              onChange={(e) => handleInputChange(e.target.value)}
+              readOnly
             />
             <button
               type="submit"
@@ -90,8 +117,8 @@ const Services = () => {
           <div className="flex flex-wrap justify-between md:justify-center -m-4 w-full">
             {loading
               ? "loading..."
-              : universitData && universitData?.length > 0
-              ? universitData?.map((ser) => {
+              : data[countryName].length > 0
+              ? data[countryName]?.map((ser) => {
                   return (
                     <div className="p-4 lg:w-1/3">
                       <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
@@ -101,9 +128,7 @@ const Services = () => {
                         <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">
                           {ser.name}
                         </h1>
-                        <p className="leading-relaxed mb-3">
-                          {ser.state_province}
-                        </p>
+
                         <a
                           href={ser.web_pages[0]}
                           target="_blank"

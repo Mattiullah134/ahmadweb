@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import logo from "../assets/logo.jpeg";
 const NavItems = [
   {
     id: "navitems-data-1",
@@ -15,11 +16,6 @@ const NavItems = [
     id: "navitems-data-3",
     name: "Services",
     nav: "/services",
-  },
-  {
-    id: "navitems-data-4",
-    name: "Blogs",
-    nav: "/blogs",
   },
 ];
 const NavBar = () => {
@@ -73,13 +69,9 @@ const NavBar = () => {
               </svg>
             </button>
           </div>
-          <div className="flex flex-1 items-center justify-end sm:items-stretch sm:justify-start">
+          <div className="flex flex-1 items-center justify-end  sm:justify-start">
             <div className="flex flex-shrink-0 items-center">
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                alt="Your Company"
-              />
+              <img className="h-16 w-auto" src={logo} alt="Your Company" />
             </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">

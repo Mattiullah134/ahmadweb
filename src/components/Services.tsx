@@ -1,24 +1,17 @@
 const ServicesData = [
   {
     id: "services-data1",
-    img: "",
-    title: "IT Consulting",
+    img: "https://neilpatel.com/wp-content/uploads/2021/01/alternative-search-engines-.jpg",
+    title: "Find Univerisity",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, fuga?",
+      "Find the best univeristy from the various country in the world",
   },
   {
     id: "services-data2",
-    img: "",
-    title: "E-Consulting",
+    img: "https://img.freepik.com/free-photo/technology-communication-icons-symbols-concept_53876-120314.jpg?t=st=1719259219~exp=1719262819~hmac=1358ad0811ead0089e019fb7632a4c27fc3a41f5b87b3c2512d67c1ed4ee76c0&w=900",
+    title: "Blogs",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, fuga?",
-  },
-  {
-    id: "services-data3",
-    img: "",
-    title: "Product Consulting",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, fuga?",
+      "Step by Step guide how to search and apply in the universities",
   },
 ];
 
@@ -32,7 +25,7 @@ const Services = () => {
               OUR TOP SERVICES
             </h1>
           </div>
-          <div className="flex justify-between flex-wrap -m-4">
+          <div className="flex justify-center gap-20 flex-wrap -m-4">
             {ServicesData.map((data) => {
               return (
                 <div className="p-4 bg-white shadow-md lg:w-1/4 md:w-1/2">
@@ -40,7 +33,7 @@ const Services = () => {
                     <img
                       alt="team"
                       className="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
-                      src="https://dummyimage.com/200x200"
+                      src={data.img}
                     />
                     <div className="w-full">
                       <h2 className="title-font font-medium text-lg text-gray-900">

@@ -1,8 +1,5 @@
-
 const Blogs = () => {
-  return (
-    <div>Blogs</div>
-  )
-}
+  return <div className="max-h-screen">Blogs</div>;
+};
 
-export default Blogs
+export default Blogs;

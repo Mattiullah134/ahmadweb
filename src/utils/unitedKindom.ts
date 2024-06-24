@@ -1,0 +1,77 @@
+const unitedKindom = [
+
+  {
+    name: "London Interdisciplinary School",
+    alpha_two_code: "GB",
+    country: "United Kingdom",
+    web_pages: ["https://www.lis.ac.uk/"],
+    "state-province": null,
+    domains: ["lis.ac.uk"],
+  },
+  {
+    name: "HULT Business School",
+    alpha_two_code: "GB",
+    country: "United Kingdom",
+    web_pages: ["https://www.hult.edu/campuses/london/postgraduate/"],
+    "state-province": null,
+    domains: ["hult.edu"],
+  },
+  {
+    name: "University of Bath",
+    alpha_two_code: "GB",
+    country: "United Kingdom",
+    web_pages: ["https://bath.ac.uk"],
+    "state-province": null,
+    domains: ["bath.edu"],
+  },
+  {
+    name: "Ulster University",
+    alpha_two_code: "GB",
+    country: "United Kingdom",
+    web_pages: ["https://www.ulster.ac.uk/"],
+    "state-province": null,
+    domains: ["ulster.ac.uk", "ulst.ac.uk"],
+  },
+  {
+    name: "Up Learn Business School",
+    alpha_two_code: "GB",
+    country: "United Kingdom",
+    web_pages: ["https://uplearnbusinessschool.com/"],
+    "state-province": null,
+    domains: ["uplearnbusinessschool.com"],
+  },
+  {
+    name: "Newcastle College",
+    alpha_two_code: "GB",
+    country: "United Kingdom",
+    web_pages: ["https://www.ncl-coll.ac.uk/"],
+    "state-province": null,
+    domains: ["ncl-coll.ac.uk"],
+  },
+  {
+    name: "Bridgwater & Taunton College",
+    alpha_two_code: "GB",
+    country: "United Kingdom",
+    web_pages: ["https://www.btc.ac.uk/"],
+    "state-province": null,
+    domains: ["btc.ac.uk"],
+  },
+  {
+    name: "Runshaw College",
+    alpha_two_code: "GB",
+    country: "United Kingdom",
+    web_pages: ["https://www.runshaw.ac.uk/"],
+    "state-province": null,
+    domains: ["runshaw.ac.uk"],
+  },
+  {
+    name: "West Suffolk College",
+    alpha_two_code: "GB",
+    country: "United Kingdom",
+    web_pages: ["https://www.wsc.ac.uk/"],
+    "state-province": null,
+    domains: ["wsc.ac.uk"],
+  },
+];
+
+export default unitedKindom;
